@@ -7,10 +7,12 @@ import "./index.css";
 
 // Components
 import App from "./main";
+import ToastContainer from "./components/toast/toast-container/ToastContainer";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ToastContainer position="bottom-left" />
       <App />
     </BrowserRouter>
   </React.StrictMode>,

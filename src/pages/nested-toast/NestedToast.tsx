@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 // Styles
-import "./nestedToast.css";
+import "./NestedToast.css";
 
 const NestedToast = () => {
   return (

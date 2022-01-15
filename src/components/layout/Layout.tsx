@@ -1,5 +1,5 @@
 // Style
-import "./layout.css";
+import "./Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
