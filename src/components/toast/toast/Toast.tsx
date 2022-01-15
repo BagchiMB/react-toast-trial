@@ -41,8 +41,6 @@ const Toast = ({
     }
   }, [delayInMs, closeToast]);
 
-  //
-
   return (
     <div className={`toast ${type}`} ref={toastRef}>
       <p>{content}</p>
