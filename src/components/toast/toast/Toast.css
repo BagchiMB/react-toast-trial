@@ -38,7 +38,7 @@
   display: flex;
   justify-content: space-between;
 
-  animation: enter-toast 500ms ease-out 100ms;
+  animation: enter-toast 500ms ease-out;
 }
 
 .toast.remove-toast {

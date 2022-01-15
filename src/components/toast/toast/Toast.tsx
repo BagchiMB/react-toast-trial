@@ -30,6 +30,7 @@ const Toast = ({
     }, 300);
   }, [id, removeToast]);
 
+  // Effect to remove toast
   useEffect(() => {
     if (delayInMs) {
       const timer = setTimeout(() => {
@@ -39,6 +40,8 @@ const Toast = ({
       return () => clearInterval(timer);
     }
   }, [delayInMs, closeToast]);
+
+  //
 
   return (
     <div className={`toast ${type}`} ref={toastRef}>

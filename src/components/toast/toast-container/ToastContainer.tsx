@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
 
 // Styles
@@ -11,15 +11,30 @@ interface ToastContainerProps {
   position: "top-right" | "top-left" | "bottom-right" | "bottom-left";
   delayInMs?: number;
 }
+
+const ADD_TOAST_EVENT_NAME = "add-toast";
+
+export const toast = ({ content, type }: Omit<ToastProps, "id">) => {
+  const event = new CustomEvent(ADD_TOAST_EVENT_NAME, {
+    detail: { content, type, id: uuid() },
+  });
+  document.dispatchEvent(event);
+};
+
 const ToastContainer = ({ position, delayInMs }: ToastContainerProps) => {
-  const [toastList, setToastList] = useState<ToastProps[]>([
-    { id: uuid(), content: "Hi", type: "success" },
-    { id: uuid(), content: "Hello", type: "error" },
-  ]);
+  const [toastList, setToastList] = useState<ToastProps[]>([]);
 
   const removeToast = (id: string) => {
     setToastList((prevState) => prevState.filter((toast) => toast.id !== id));
   };
+
+  useEffect(() => {
+    document.addEventListener(ADD_TOAST_EVENT_NAME, ((e: CustomEvent) => {
+      setToastList((prevState) => [...prevState, e.detail]);
+    }) as EventListener);
+
+    return () => document.removeEventListener(ADD_TOAST_EVENT_NAME, () => {});
+  }, []);
 
   return (
     <div className={`toast-container ${position}`}>
