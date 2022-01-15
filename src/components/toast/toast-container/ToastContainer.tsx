@@ -9,8 +9,9 @@ import Toast, { ToastProps } from "../toast/Toast";
 
 interface ToastContainerProps {
   position: "top-right" | "top-left" | "bottom-right" | "bottom-left";
+  delayInMs?: number;
 }
-const ToastContainer = ({ position }: ToastContainerProps) => {
+const ToastContainer = ({ position, delayInMs }: ToastContainerProps) => {
   const [toastList, setToastList] = useState<ToastProps[]>([
     { id: uuid(), content: "Hi", type: "success" },
     { id: uuid(), content: "Hello", type: "error" },
@@ -29,6 +30,7 @@ const ToastContainer = ({ position }: ToastContainerProps) => {
           type={toast.type}
           id={toast.id}
           removeToast={removeToast}
+          delayInMs={delayInMs}
         />
       ))}
     </div>
