@@ -12,7 +12,7 @@ import ToastContainer from "./components/toast/toast-container/ToastContainer";
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <ToastContainer position="bottom-left" delayInMs={5000} />
+      <ToastContainer position="bottom-right" delayInMs={5000} />
       <App />
     </BrowserRouter>
   </React.StrictMode>,

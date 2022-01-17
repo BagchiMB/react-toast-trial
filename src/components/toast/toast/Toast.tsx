@@ -12,6 +12,7 @@ export interface ToastProps {
 interface ToastComponentProps extends ToastProps {
   removeToast: (id: string) => void;
   delayInMs?: number;
+  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
 }
 
 const Toast = ({
@@ -20,15 +21,17 @@ const Toast = ({
   type,
   removeToast,
   delayInMs,
+  position,
 }: ToastComponentProps) => {
   const toastRef = useRef<HTMLDivElement>(null);
 
   const closeToast = useCallback(() => {
-    toastRef.current?.classList.add("remove-toast");
+    toastRef.current?.classList.add(`remove-toast`);
+    toastRef.current?.classList.add(position);
     setTimeout(() => {
       removeToast(id);
     }, 300);
-  }, [id, removeToast]);
+  }, [id, removeToast, position]);
 
   // Effect to remove toast
   useEffect(() => {
@@ -42,7 +45,7 @@ const Toast = ({
   }, [delayInMs, closeToast]);
 
   return (
-    <div className={`toast ${type}`} ref={toastRef}>
+    <div className={`toast ${type} ${position}`} ref={toastRef}>
       <p>{content}</p>
       <button type="button" onClick={closeToast}>
         X

@@ -72,6 +72,7 @@ const ToastContainer = ({
           id={toast.id}
           removeToast={removeToast}
           delayInMs={delayInMs}
+          position={position}
         />
       ))}
     </div>

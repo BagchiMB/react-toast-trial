@@ -6,7 +6,7 @@
   background-color: #e53e3e;
 }
 
-@keyframes enter-toast {
+@keyframes enter-toast-left {
   0% {
     transform: translateX(-200px);
   }
@@ -18,12 +18,33 @@
   }
 }
 
-@keyframes remove-toast {
+@keyframes enter-toast-right {
+  0% {
+    transform: translateX(200px);
+  }
+  90% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes remove-toast-left {
   0% {
     transform: translateX(0px);
   }
   100% {
     transform: translateX(-200px);
+  }
+}
+
+@keyframes remove-toast-right {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(200px);
   }
 }
 
@@ -38,11 +59,26 @@
   display: flex;
   justify-content: space-between;
 
-  animation: enter-toast 500ms ease-out;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
 }
 
-.toast.remove-toast {
-  animation: remove-toast 500ms ease-out;
+.toast.top-left,
+.toast.bottom-left {
+  animation-name: enter-toast-left;
+}
+.toast.top-right,
+.toast.bottom-right {
+  animation-name: enter-toast-right;
+}
+
+.toast.remove-toast.top-left,
+.toast.remove-toast.bottom-left {
+  animation-name: remove-toast-left;
+}
+.toast.remove-toast.top-right,
+.toast.remove-toast.bottom-right {
+  animation-name: remove-toast-right;
 }
 
 .toast button {
